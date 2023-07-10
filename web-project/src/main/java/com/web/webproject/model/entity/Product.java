@@ -41,14 +41,14 @@ public class Product {
     private List<ProductReview> productReviews;
     @OneToMany(mappedBy ="product",cascade = CascadeType.ALL)
     private List<ProductMeta> productMetas;
+    @OneToMany(mappedBy ="product",cascade = CascadeType.ALL)
+    private List<ProductTag> productTags;
+    @OneToMany(mappedBy ="product",cascade = CascadeType.ALL)
+    private List<OrderItem> orderItems;
 
     @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "userId", nullable = false, referencedColumnName = "id")
     private User user;
-
-    @JsonIgnore
-    @ManyToOne()
-    @JoinColumn()
 
 }

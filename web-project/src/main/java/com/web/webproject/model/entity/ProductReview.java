@@ -1,5 +1,6 @@
 package com.web.webproject.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,12 +22,6 @@ public class ProductReview {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="productId")
-    private List<Product> products;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parentId")
-    private List<ProductReview> subProductReviews;
     private String title;
     private int ratting;
     private String published;
@@ -34,6 +29,13 @@ public class ProductReview {
     private LocalDate publishedAt;
     @Column(columnDefinition = "TEXT")
     private String content;
+    @JsonIgnore
+    @ManyToOne()
+    @JoinColumn(name = "productId", nullable = false, referencedColumnName = "id")
+    private Product product;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "parentId")
+    private List<ProductReview> subProductReviews;
 
 
 

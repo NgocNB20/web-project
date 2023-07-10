@@ -18,13 +18,12 @@ public class ProductMeta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private String key;
+    @Column(columnDefinition = "TEXT")
+    private String content;
     @ManyToOne()
     @JsonIgnore
     @JoinColumn(name = "productId",referencedColumnName = "id")
     private Product product;
-
-    @OneToMany()
-    List<ProductReview> subProductReviews;
 
 }

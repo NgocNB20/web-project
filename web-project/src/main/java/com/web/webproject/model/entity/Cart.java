@@ -1,14 +1,13 @@
 package com.web.webproject.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -19,4 +18,27 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String sessionId;
+    private String token;
+    private Integer status;
+    private String firstName;
+    private String middleName;
+    private String lastName;
+    private String mobile;
+    private String email;
+    private String line1;
+    private String line2;
+    private String city;
+    private String province;
+    private String country;
+    private LocalDate createAt;
+    private LocalDate updateAt;
+    @Column(columnDefinition = "TEXT")
+    private String content;
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "userId",name = "id")
+    @JsonIgnore
+    private User user;
+    @OneToMany(mappedBy = "cart")
+    private List<CartItem> cartItems;
 }
