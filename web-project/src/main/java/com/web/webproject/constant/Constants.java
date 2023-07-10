@@ -148,13 +148,67 @@ public class Constants {
    * The constant FROM_DATE_COLUMN.
    */
   public static final String FROM_DATE_COLUMN = "FromDate";
+  public static final String AUTHORIZATION_HEADER = "Authorization";
+  public static final String PREFIX_TOKEN = "Bearer ";
+  public static final String JWT_SECRET_KEY = "obys-003-secret-jwt-key";
+  public static final String JWT_DEVICE_SECRET_KEY = "obys-003-M20-secret-jwt-key";
+  public static final String ADMIN_ROLE = "ADMIN_ROLE";
+  public static final String SUB_ADMIN_ROLE = "SUB_ADMIN_ROLE";
+  public static final String CUSTOMER_ROLE = "CUSTOMER_ROLE";
+  public static final String USER_ROLE = "USER_ROLE";
+  public static final String JWT_USERNAME_KEY = "username";
+  public static final String JWT_NAME_KEY = "name";
+  public static final String JWT_ADDRESS_KEY = "address";
+  public static final String JWT_PHONE_KEY = "phone";
+  public static final String JWT_EMAIL_KEY = "email";
+  public static final String JWT_STATUS_KEY = "status";
+  public static final long JWT_TOKEN_FIVE_MINUTE_TERM = 18000000L;
+  public static final long JWT_TOKEN_SEVEN_DAY_TERM = 604800000L;
+  public static final long JWT_TOKEN_ONE_DAY_TERM = 86400000L;
+  public static final long JWT_TOKEN_ONE_YEAR_TERM = 31536000000L;
+  public static final long JWT_TOKEN_ONE_TEN_YEAR_TERM = 315360000000L;
+  public static final Integer PAGE_NUM_DEFAULT = 0;
+  public static final Integer PAGE_SIZE_DEFAULT = 50;
+  public static final int KIT_SUCCESS_STATUS = 0;
+  public static final String DRIVING_LICENSE_TYPE_FIELD = "driving.license.type";
+  public static final String LICENSE_TYPE_FIELD = "license.type";
+  public static final String VEHICLE_TYPE_WEIGHT_FIELD = "vehicle-type.and.weight";
+  public static final String DRIVER_INFORMATION_FIELD = "driver.information";
+  public static final String DRIVING_LICENSE_FIELD = "driving.license";
+  public static final String DRIVING_LICENSE_NUMBER = "driving.license.number";
+  public static final String DRIVING_LICENSE_NUMBER_INVALID = "driving.license.number.invalid";
+  public static final String DRIVER_CODE = "driver.code";
+  public static final String DRIVER_NAME_FIELD = "driver.name.field";
+  public static final String VEHICLE_TYPE = "vehicle.type";
+  public static final String VEHICLE = "vehicle";
+  public static final String VEHICLE_CODE = "vehicle.code";
+  public static final String SERIAL_NO = "serial.no";
+  public static final String SERIAL_NO_INVALID = "serial.no.invalid";
+  public static final String INSTALLED_DATE = "install.date";
+  public static final String REMOVE_DATE = "remove.date";
+  public static final String RECEIVED_DATE = "received.date";
+  public static final String TRANSPORT_DATE = "transport.date";
+  public static final String KIT_SET = "kit.set";
+  public static final String DRIVER_FIELD = "driver.field";
+  public static final String VERSION = "version";
+  public static final String VERSION_NAME = "version.name";
+  public static final String SEARCH_DRIVING_LICENSE_TYPE_REQUEST = "SearchDrivingLicenseTypeRequest";
+  public static final String SEARCH_DRIVER_REQUEST = "SearchDriverRequest";
+  public static final String SEARCH_KIT_SET_REQUEST = "SearchKitSetRequest";
+  public static final String SEARCH_SCAN_FACE_TRAINING_HISTORY = "SearchScanFaceTrainingHistory";
+  public static final String SEARCH_SYNC_FACE_TRAINING_HISTORY = "SearchSyncFaceTrainingHistory";
+  public static final String SEARCH_VERSION = "SearchVersion";
+  public static final String FILE = "file.download";
+  public static final String DATA_EMPTY = "valid.data.request.empty";
+
+  private Constants() {
+    throw new IllegalStateException("Utility class");
+  }
 
   /**
    * Instantiates a new Constants.
    */
-  private Constants() {
-    throw new IllegalStateException("Utility class");
-  }
+
 
 
 }

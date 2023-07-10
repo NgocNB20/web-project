@@ -26,4 +26,5 @@ public interface Enums {
    * @return the boolean
    */
   boolean valueOfs(String value);
+
 }
