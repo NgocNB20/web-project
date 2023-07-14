@@ -18,13 +18,8 @@ public class ProductCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "categoryId", nullable = false, referencedColumnName = "id")
-    Category category;
-
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "productId", nullable = false, referencedColumnName = "id")
-    Product product;
+    @Column(name = "category_id")
+    String categoryId; /*table category*/
+    @Column(name = "product_id")
+    String productId; /* table product*/
 }

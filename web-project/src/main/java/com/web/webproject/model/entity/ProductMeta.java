@@ -17,13 +17,11 @@ import java.util.List;
 public class ProductMeta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
+    @Column(name = "product_id")
+    private Integer productId;
     private String key;
     @Column(columnDefinition = "TEXT")
     private String content;
-    @ManyToOne()
-    @JsonIgnore
-    @JoinColumn(name = "productId",referencedColumnName = "id")
-    private Product product;
 
 }

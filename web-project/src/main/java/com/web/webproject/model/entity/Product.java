@@ -18,8 +18,11 @@ import java.util.List;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
+    @Column(name = "user_id")
+    private Integer userId;
     private String title;
+    @Column(name = "meta_title")
     private String metaTitle;
     private String slug;
     private Long summary;
@@ -29,26 +32,15 @@ public class Product {
     private Float discount;
     private Integer quantity;
     private Integer shop;
+    @Column(name = "create_at")
     private LocalDate createAt;
+    @Column(name = "update_at")
     private LocalDate updateAt;
     private LocalDate published;
+    @Column(name = "start_at")
     private LocalDate startAt;
+    @Column(name = "end_at")
     private LocalDate endAt;
     private String context;
-    @OneToMany(mappedBy ="product",cascade = CascadeType.ALL)
-    private List<ProductCategory> productCategories = new ArrayList<>();
-    @OneToMany(mappedBy ="product",cascade = CascadeType.ALL)
-    private List<ProductReview> productReviews;
-    @OneToMany(mappedBy ="product",cascade = CascadeType.ALL)
-    private List<ProductMeta> productMetas;
-    @OneToMany(mappedBy ="product",cascade = CascadeType.ALL)
-    private List<ProductTag> productTags;
-    @OneToMany(mappedBy ="product",cascade = CascadeType.ALL)
-    private List<OrderItem> orderItems;
-
-    @JsonIgnore
-    @ManyToOne()
-    @JoinColumn(name = "userId", nullable = false, referencedColumnName = "id")
-    private User user;
 
 }

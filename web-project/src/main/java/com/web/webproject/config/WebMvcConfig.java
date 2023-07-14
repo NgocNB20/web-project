@@ -20,14 +20,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Bean
     public LocaleResolver localeResolver() {
         AcceptHeaderLocaleResolver resolver = new AcceptHeaderLocaleResolver();
-        resolver.setDefaultLocale(Locale.JAPAN);
+        resolver.setDefaultLocale(new Locale("vn"));
         return resolver;
     }
-    /**
-     * Gets message source.
-     *
-     * @return the message source
-     */
+
+
+    /*change message in project*/
     @Bean(name = "messageSource")
     public MessageSource getMessageSource() {
         ReloadableResourceBundleMessageSource messageSource =
@@ -64,5 +62,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
         modelMapper.getConfiguration()
                 .setMatchingStrategy(MatchingStrategies.STRICT);
         return modelMapper;
+    }
+
+    public static void main(String[] args) {
+
     }
 }

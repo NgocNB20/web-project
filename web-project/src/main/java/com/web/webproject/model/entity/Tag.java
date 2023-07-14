@@ -15,12 +15,11 @@ import java.util.List;
 public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String title;
+    @Column(name = "meta_title")
     private String metaTitle;
     private String slug;
     @Column(columnDefinition = "TEXT")
     private String content;
-    @OneToMany(mappedBy ="tag",cascade = CascadeType.ALL)
-    private List<ProductTag> productTags;
 }

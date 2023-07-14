@@ -1,12 +1,9 @@
 package com.web.webproject.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.tomcat.jni.Local;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -18,19 +15,17 @@ import java.time.LocalDate;
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
+    @Column(name = "user_id")
+    private Integer userId;
+    @Column(name = "order_id")
+    private Integer orderId;
     private String code;
     private Integer type;
     private Integer model;
     private Integer status;
+    @Column(name = "create_at")
     private LocalDate createAt;
+    @Column(name = "update_at")
     private LocalDate updateAt;
-    @ManyToOne
-    @JoinColumn(referencedColumnName = "id",name = "orderId")
-    @JsonIgnore
-    private Order order;
-    @JsonIgnore
-    @ManyToOne()
-    @JoinColumn(name = "userId", nullable = false, referencedColumnName = "id") /*FK*/
-    private User user;
 }

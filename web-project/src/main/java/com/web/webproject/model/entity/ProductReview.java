@@ -21,7 +21,9 @@ import java.util.Locale;
 public class ProductReview {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Integer id;
+    private Integer productId;
+    private Integer parentId;
     private String title;
     private int ratting;
     private String published;
@@ -29,15 +31,4 @@ public class ProductReview {
     private LocalDate publishedAt;
     @Column(columnDefinition = "TEXT")
     private String content;
-    @JsonIgnore
-    @ManyToOne()
-    @JoinColumn(name = "productId", nullable = false, referencedColumnName = "id")
-    private Product product;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parentId")
-    private List<ProductReview> subProductReviews;
-
-
-
-
 }
