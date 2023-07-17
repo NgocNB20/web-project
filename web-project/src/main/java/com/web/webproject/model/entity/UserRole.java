@@ -1,8 +1,6 @@
 package com.web.webproject.model.entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -10,14 +8,13 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Data
-@Table(name = "role_table")
-public class Role {
+@Table(name = "user_role")
+public class UserRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "role_name")
-    private String nameRole;
-
+    @Column(name = "user_id")
+    private Integer userId;
+    @Column(name = "role_id")
+    private Integer roleId;
 }
