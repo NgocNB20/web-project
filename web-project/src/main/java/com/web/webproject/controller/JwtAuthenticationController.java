@@ -1,6 +1,7 @@
 package com.web.webproject.controller;
 
 import com.web.webproject.config.security.JwtTokenUtil;
+import com.web.webproject.config.security.JwtUserDetailsService;
 import com.web.webproject.model.request.JwtRequest;
 import com.web.webproject.model.response.JwtResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,6 @@ import java.util.Objects;
 
 @RestController
 @CrossOrigin
-
 public class JwtAuthenticationController {
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -26,8 +26,8 @@ public class JwtAuthenticationController {
     private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    private UserDetailsService jwtInMemoryUserDetailsService;
-    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+    private JwtUserDetailsService jwtInMemoryUserDetailsService;
+    @PostMapping(value = "/authenticate")
     public ResponseEntity<?> generateAuthenticationToken(@RequestBody JwtRequest authenticationRequest)
             throws Exception {
 
