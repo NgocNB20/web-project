@@ -1,6 +1,6 @@
 package com.web.webproject.repository;
 
-import com.web.webproject.model.dto.UserRoleDTO;
+import com.web.webproject.model.dto.UserDto;
 import com.web.webproject.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -11,8 +11,8 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User,Integer>  {
-    Optional<User> findByEmail(String email);
-    @Query(value = "SELECT UR.id,UT.email,RT.role_name,RT.id AS role_id,UT.id AS user_id FROM user_role AS UR INNER JOIN user_table as UT ON UR.user_id = UT.id INNER JOIN role_table AS RT ON RT.id = UR.role_id WHERE UT.email=email",nativeQuery = true)
-     List<UserRoleDTO> getUsersRoleByEmail(@Param("email") String email);
 
+    Optional<User> findByEmail(String email);
+    @Query(value = "SELECT NEW com.web.webproject.model.dto.UserDTO (U.email, U.password) FROM User U WHERE U.email = :email",nativeQuery = true)
+    List<UserDto> getUsersRoleByEmail(@Param("email") String email);
 }

@@ -23,7 +23,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @RequiredArgsConstructor
 public class JwtRequestFilter extends OncePerRequestFilter {
 
-
     private final JwtUserDetailsService jwtUserDetailsService;
     private final JwtTokenUtil jwtTokenUtil;
 
@@ -38,10 +37,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             filterChain.doFilter(request,response);
             return;
         }
-        final String authHeader = request.getHeader("Authorization");
-        final String jwt;
-        final String userEmail;
-        if (authHeader.isEmpty()||authHeader.startsWith("Bear")) {
+         String authHeader = request.getHeader("Authorization");
+         String jwt;
+         String userEmail;
+        if (authHeader == null ||!authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request,response);
             return;
         }

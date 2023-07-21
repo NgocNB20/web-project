@@ -1,6 +1,5 @@
 package com.web.webproject.config.security;
 
-import com.web.webproject.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -63,3 +62,4 @@ public class ApplicationConfig {
         return http.build();
     }
 }
+

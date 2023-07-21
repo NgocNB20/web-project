@@ -1,6 +1,7 @@
 package com.web.webproject.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.EntityListeners;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
