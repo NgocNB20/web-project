@@ -4,6 +4,20 @@ package com.web.webproject.constant;
  * The type System message code.
  */
 public class SystemMessageCode {
+  private String code;
+  private String message;
+  public String getCode() {
+    return this.code;
+  }
+
+  public String getMessage() {
+    return this.message;
+  }
+
+  private SystemMessageCode(String code, String message) {
+    this.code = code;
+    this.message = message;
+  }
 
   /**
    * Instantiates a new System message code.
