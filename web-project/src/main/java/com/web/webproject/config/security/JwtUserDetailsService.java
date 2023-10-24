@@ -1,35 +1,34 @@
 package com.web.webproject.config.security;
 
 import com.web.webproject.model.dto.UserDto;
+import com.web.webproject.model.entity.Role;
 import com.web.webproject.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import java.util.*;
+import com.web.webproject.model.entity.User;
 
 @Service
 @RequiredArgsConstructor
 public class JwtUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        com.web.webproject.model.entity.User user = userRepository.findByEmail(username).get();
-
-        List<UserDto> users = userRepository.getUsersRoleByEmail(username);
-        if (users.size()>0){
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Optional<User> userOtp = userRepository.findByEmail(email);
+        if (userOtp.isPresent()){
             List<GrantedAuthority> authorities = new ArrayList<>();
-            for (UserDto userDTO : users) {
-                authorities.add(new SimpleGrantedAuthority(""));
-            }
-            return new User(username,users.get(0).getPassword() ,authorities);
+            userOtp.get().getRoles().forEach(role->{
+                authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+            });
+            return new org.springframework.security.core.userdetails.User(userOtp.get().getUsername(),userOtp.get().getPassword() ,authorities);
         }
         else {
-            throw new UsernameNotFoundException("User not found with username: " + username);
+            throw new UsernameNotFoundException("User not found with email: " + email);
         }
     }
 

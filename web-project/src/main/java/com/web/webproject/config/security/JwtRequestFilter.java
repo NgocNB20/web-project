@@ -3,10 +3,6 @@ import java.io.IOException;
 import java.util.Objects;
 
 import io.jsonwebtoken.ExpiredJwtException;
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -18,49 +14,62 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-/* check thời gian token, request, response*/
-@Component
-@RequiredArgsConstructor
-public class JwtRequestFilter extends OncePerRequestFilter {
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-    private final JwtUserDetailsService jwtUserDetailsService;
-    private final JwtTokenUtil jwtTokenUtil;
+/* check thời gian token, request, response*/
+//@Component
+//@RequiredArgsConstructor
+//public class JwtRequestFilter extends OncePerRequestFilter {
+    public class JwtRequestFilter   {
+
+//    private final JwtUserDetailsService jwtUserDetailsService;
+//    private final JwtTokenUtil jwtTokenUtil;
+//
+//    @Override
+//    protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
+//
+//    }
 
 
     /*lấy token từ header, validate token đó,*/
-    @Override
-    protected void doFilterInternal(
-            @NonNull HttpServletRequest request
-            ,@NonNull HttpServletResponse response,
-            @NonNull FilterChain filterChain) throws ServletException, IOException {
-        if (request.getServletPath().contains("api/v1/auth")){
-            filterChain.doFilter(request,response);
-            return;
-        }
-         String authHeader = request.getHeader("Authorization");
-         String jwt;
-         String userEmail;
-        if (authHeader == null ||!authHeader.startsWith("Bearer ")) {
-            filterChain.doFilter(request,response);
-            return;
-        }
-        jwt = authHeader.substring(7);
-        userEmail= jwtTokenUtil.getUsernameFromToken(jwt);
 
-        if (StringUtils.isNotEmpty(userEmail) && SecurityContextHolder.getContext().getAuthentication() == null){
-            UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(userEmail);
-            if (!Objects.isNull(userDetails)) {
-                UsernamePasswordAuthenticationToken authentication
-                        =  new UsernamePasswordAuthenticationToken(userDetails.getUsername(),null,userDetails.getAuthorities());
-                SecurityContextHolder.getContext().setAuthentication(authentication);
-                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request)); //=> option về phiên bản đăng nhập của người dùng (như địa chỉ IP và trình duyệt) trong đối tượng
-            }
-            filterChain.doFilter(request,response);
-        }
-    }
-
-
-
+//    protected void doFilterInternal(
+//            @NonNull HttpServletRequest request
+//            ,@NonNull HttpServletResponse response,
+//            @NonNull FilterChain filterChain) throws ServletException, IOException {
+//        if (request.getServletPath().contains("api/v1/auth")){
+//            filterChain.doFilter(request,response);
+//            return;
+//        }
+//         String authHeader = request.getHeader("Authorization");
+//         String jwt;
+//         String userEmail;
+//        if (authHeader == null ||!authHeader.startsWith("Bearer ")) {
+//            filterChain.doFilter(request,response);
+//            return;
+//        }
+//        jwt = authHeader.substring(7);
+//        userEmail= jwtTokenUtil.getUsernameFromToken(jwt);
+//
+//        if (StringUtils.isNotEmpty(userEmail) && SecurityContextHolder.getContext().getAuthentication() == null){
+//            UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(userEmail);
+//            if (!Objects.isNull(userDetails)) {
+//                UsernamePasswordAuthenticationToken authentication
+//                        =  new UsernamePasswordAuthenticationToken(userDetails.getUsername(),null,userDetails.getAuthorities());
+//                SecurityContextHolder.getContext().setAuthentication(authentication);
+//                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request)); //=> option về phiên bản đăng nhập của người dùng (như địa chỉ IP và trình duyệt) trong đối tượng
+//            }
+//            filterChain.doFilter(request,response);
+//        }
+//    }
+//
+//    @Override
+//    protected void doFilterInternal(javax.servlet.http.HttpServletRequest httpServletRequest, javax.servlet.http.HttpServletResponse httpServletResponse, javax.servlet.FilterChain filterChain) throws javax.servlet.ServletException, IOException {
+//
+//    }
 
 
 //    @Override
