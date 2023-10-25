@@ -20,10 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Service
 @Transactional
 @RequiredArgsConstructor
 @Slf4j /*log lỗi*/
+@Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
@@ -63,15 +63,4 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<User> userOtp = userRepository.findByEmail(email);
-        if (userOtp.isPresent()) {
-            List<Role> roles = userOtp.get().getRoles();
-            List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-            roles.stream().forEach(role -> grantedAuthorities.add(new SimpleGrantedAuthority(role.getRoleName())));
-            return new org.springframework.security.core.userdetails.User(userOtp.get().getEmail(),userOtp.get().getPassword(),grantedAuthorities);
-        }
-        return null;
-    }
 }
