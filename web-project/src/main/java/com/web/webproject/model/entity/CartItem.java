@@ -23,7 +23,6 @@ public class CartItem {
     @ManyToOne
     @JoinColumn(name = "session_id")
     private ShoppingSession shoppingSession;
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
     private Product product;
