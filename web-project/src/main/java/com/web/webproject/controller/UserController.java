@@ -4,19 +4,17 @@ import com.web.webproject.model.entity.User;
 import com.web.webproject.model.response.BaseResponse;
 import com.web.webproject.service.UserService;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/user")
+@RequestMapping("/api")
 @AllArgsConstructor
 public class UserController {
     private final UserService userService;
 
-    @GetMapping
-    public BaseResponse<?> login(@RequestBody User user){
-        return null;
+    @GetMapping("/users")
+    public BaseResponse<?> getUser(@RequestBody User user){
+        return BaseResponse.builder().data(userService.getUsers()).build();
     }
     @PostMapping
     public BaseResponse<?> createUser(@RequestBody User user) {
