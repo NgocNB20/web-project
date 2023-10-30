@@ -23,6 +23,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import static org.springframework.http.MediaType.APPLICATION_ATOM_XML_VALUE;
 
+import static org.springframework.http.MediaType.APPLICATION_ATOM_XML_VALUE;
+
 @RequiredArgsConstructor
 @Slf4j
 public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
